@@ -1,21 +1,18 @@
 package com.monalisa.achadoseperdidos.entity;
 
 import com.monalisa.achadoseperdidos.enums.ItemStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "item", indexes = {
-        @Index(name = "idx_item_id", columnList = "id")
-})
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +30,7 @@ public class Item {
     private ItemStatus status;
 
     @Column(name = "date_item")
-    private LocalDateTime date_item;
+    private LocalDate dateItem;
 
     @Column(name = "latitude", length = 25)
     private String latitude;
@@ -42,7 +39,7 @@ public class Item {
     private String longitude;
 
     @Column(name = "name_found", length = 100)
-    private String name_found;
+    private String nameFound;
 
     @Column(name = "phone", length = 11)
     private String phone;
@@ -51,7 +48,23 @@ public class Item {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
+    //gerado na mão p/ evitar que propriedades mapeadas disparem requisições do BD
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", date_item=" + dateItem +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", name_found='" + nameFound + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

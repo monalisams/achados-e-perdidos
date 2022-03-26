@@ -1,15 +1,13 @@
 package com.monalisa.achadoseperdidos.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -28,7 +26,7 @@ public class Owner {
     private String cpf;
 
     @Column(name = "birth_date")
-    private Date birth_date;
+    private LocalDate birthDate;
 
     @Column(name = "phone", length = 11)
     private String phone;
@@ -36,7 +34,19 @@ public class Owner {
     @Column(name = "email", length = 255)
     private String email;
 
-    @Column(name = "identification_data")
-    private LocalDateTime identification_data;
+    @Column(name = "identification_date")
+    private LocalDate identificationDate;
 
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", birthDate=" + birthDate +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", identification_data=" + identificationDate +
+                '}';
+    }
 }
