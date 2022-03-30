@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,8 +19,11 @@ public class OwnerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Owner saveOwner(@RequestBody OwnerDTO ownerDTO) {
-        return service.saveOwner(ownerDTO);
+    public Owner saveOwner(@RequestBody @Valid OwnerDTO ownerDTO) {
+        return service
+                .saveOwner(ownerDTO)
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado."));
     }
 
     @DeleteMapping("/id")
@@ -31,8 +35,8 @@ public class OwnerController {
     }
 
     @PutMapping("/{id}")
-    public Owner updateOwner(@PathVariable Long id, @RequestBody OwnerDTO ownerDTO){
-        return  service
+    public Owner updateOwner(@PathVariable Long id, @RequestBody @Valid OwnerDTO ownerDTO){
+        return service
                 .updateOwner(id, ownerDTO)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Owner não encontrado."));
 
@@ -40,7 +44,7 @@ public class OwnerController {
 
     @GetMapping("/{id}")
     public Owner getOwner(@PathVariable Long id){
-        return  service
+        return service
                 .getOwnerId(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner não encontrado."));

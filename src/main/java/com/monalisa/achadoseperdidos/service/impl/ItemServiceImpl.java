@@ -1,6 +1,7 @@
 package com.monalisa.achadoseperdidos.service.impl;
 
 import com.monalisa.achadoseperdidos.dto.ItemDTO;
+import com.monalisa.achadoseperdidos.dto.ItemFilterDTO;
 import com.monalisa.achadoseperdidos.entity.Item;
 import com.monalisa.achadoseperdidos.enums.ItemStatus;
 import com.monalisa.achadoseperdidos.repository.ItemRepository;
@@ -71,7 +72,7 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public List<Item> getItems(ItemDTO filter) {
+    public List<Item> getItems(ItemFilterDTO filter) {
         return itemRepository.findAllBy(filter.getName(), filter.getDescription(), filter.getStatus());
     }
 
@@ -82,8 +83,6 @@ public class ItemServiceImpl implements ItemService {
     public Item map(Item item, ItemDTO dto){
         item.setName(dto.getName());
         item.setDescription(dto.getDescription());
-        item.setStatus(dto.getStatus());
-        item.setDateItem(dto.getDateItem());
         item.setLatitude(dto.getLatitude());
         item.setLongitude(dto.getLongitude());
         item.setNameFound(dto.getNameFound());

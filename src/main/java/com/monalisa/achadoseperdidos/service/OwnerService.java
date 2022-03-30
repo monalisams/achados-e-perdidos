@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OwnerService {
-    Owner saveOwner(OwnerDTO dto);
+    Optional<Owner> saveOwner(OwnerDTO dto);
     Optional<Owner> deleteOwner(Long id);
     Optional<Owner> getOwnerId(Long id);
     List<Owner> getOwners();

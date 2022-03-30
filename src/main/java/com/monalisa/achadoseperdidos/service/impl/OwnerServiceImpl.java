@@ -2,6 +2,8 @@ package com.monalisa.achadoseperdidos.service.impl;
 
 import com.monalisa.achadoseperdidos.dto.OwnerDTO;
 import com.monalisa.achadoseperdidos.entity.Owner;
+import com.monalisa.achadoseperdidos.enums.ItemStatus;
+import com.monalisa.achadoseperdidos.repository.ItemRepository;
 import com.monalisa.achadoseperdidos.repository.OwnerRepository;
 import com.monalisa.achadoseperdidos.service.OwnerService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +18,21 @@ import java.util.Optional;
 public class OwnerServiceImpl implements OwnerService {
 
     public final OwnerRepository ownerRepository;
+    public final ItemRepository itemRepository;
 
     @Override
     @Transactional
-    public Owner saveOwner(OwnerDTO dto) {
-        Owner owner = map(dto);
-        ownerRepository.save(owner);
-        return owner;
+    public Optional<Owner> saveOwner(OwnerDTO dto) {
+        return itemRepository
+                .findById(dto.getItemId())
+                .map(item -> {
+                    Owner owner = map(dto);
+                    ownerRepository.save(owner);
+                    item.setOwner(owner);
+                    item.setStatus(ItemStatus.FOUND);
+                    itemRepository.save(item);
+                    return owner;
+                });
     }
 
     @Override
@@ -71,7 +81,6 @@ public class OwnerServiceImpl implements OwnerService {
         owner.setBirthDate(dto.getBirthDate());
         owner.setPhone(dto.getPhone());
         owner.setEmail(dto.getEmail());
-        owner.setIdentificationDate(dto.getIdentificationDate());
         return owner;
     }
 }

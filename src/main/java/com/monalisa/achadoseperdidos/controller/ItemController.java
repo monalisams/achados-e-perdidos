@@ -1,6 +1,7 @@
 package com.monalisa.achadoseperdidos.controller;
 
 import com.monalisa.achadoseperdidos.dto.ItemDTO;
+import com.monalisa.achadoseperdidos.dto.ItemFilterDTO;
 import com.monalisa.achadoseperdidos.dto.UpdateItemStatusDTO;
 import com.monalisa.achadoseperdidos.entity.Item;
 import com.monalisa.achadoseperdidos.enums.ItemStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Item saveItem(@RequestBody ItemDTO itemDTO) {
+    public Item saveItem(@RequestBody @Valid ItemDTO itemDTO) {
         return service.saveItem(itemDTO);
     }
 
@@ -34,13 +36,13 @@ public class ItemController {
     }
 
     @PatchMapping("/{id}")
-    public void updateItemStatus(@PathVariable Long id, @RequestBody UpdateItemStatusDTO updateItemStatusDTO){
+    public void updateItemStatus(@PathVariable Long id, @RequestBody @Valid UpdateItemStatusDTO updateItemStatusDTO){
         String newStatus = updateItemStatusDTO.getNewStatus();
         service.updateItemStatus(id, ItemStatus.valueOf(newStatus));
     }
 
     @PutMapping("/{id}")
-    public Item updateItem(@PathVariable  Long id, @RequestBody ItemDTO itemDTO){
+    public Item updateItem(@PathVariable  Long id, @RequestBody @Valid ItemDTO itemDTO){
         return  service
                 .updateItem(id, itemDTO)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Item não encontrado."));
@@ -62,7 +64,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<Item> getItems(ItemDTO filter){
+    public List<Item> getItems(ItemFilterDTO filter){
         return service
                 .getItems(filter);
     }

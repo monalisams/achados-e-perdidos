@@ -3,6 +3,8 @@ package com.monalisa.achadoseperdidos.entity;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 
@@ -19,16 +21,17 @@ public class Owner {
     private Long id;
 
     @Column(name = "name", length = 255)
+
     private String name;
 
     @Column(name = "cpf", length = 11)
-    @CPF
     private String cpf;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Column(name = "phone", length = 11)
+
     private String phone;
 
     @Column(name = "email", length = 255)
