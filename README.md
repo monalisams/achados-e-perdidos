@@ -35,8 +35,8 @@ O objetivo da aplicação é controlar os itens achados e perdidos da região de
 
 Feito por Monalisa Martins 👋🏽 Entre em contato!
 
-[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/monalisa-martins-a8b839165/)](https://www.linkedin.com/in/monalisa-martins-a8b839165/) 
-[![Gmail Badge](https://img.shields.io/badge/-tgmarinho@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mona.mona3256@gmail.com)](mailto:mona.mona3256@gmail.com)
+[![Linkedin Badge](https://img.shields.io/badge/-Monalisa-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/monalisa-martins-a8b839165/)](https://www.linkedin.com/in/monalisa-martins-a8b839165/) 
+[![Gmail Badge](https://img.shields.io/badge/-mona.mona3256@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mona.mona3256@gmail.com)](mailto:mona.mona3256@gmail.com)
 
 ### Pré-requisitos
 
