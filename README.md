@@ -10,7 +10,7 @@
 </p>
 
 <h4 align="center"> 
-	🚧 Achados e Perdidos 🚀 Em construção...  🚧
+	🚧 Achados e Perdidos - Em construção...  🚧
 </h4>
 
 # Objetivo 
@@ -30,7 +30,7 @@ O objetivo da aplicação é controlar os itens achados e perdidos da região de
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/65254332?s=400&u=bec60e7f443b1f2d45a38385661b6ff624b83693&v=4" width="100px;" alt=""/>
  <br />
- <sub><b>Monalisa Martins</b></sub></a> 🚀
+ <sub><b>Monalisa Martins</b></sub></a> 
 
 
 Feito por Monalisa Martins 👋🏽 Entre em contato!
