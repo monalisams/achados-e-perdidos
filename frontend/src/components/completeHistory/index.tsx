@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ItemsService } from "../../services/items";
 import { ItemGet } from "../../services/models/item";
-import { HeaderLoged } from "../headerLoged";
+import { Header } from "../header";
 
 const CompleteHistory = () => {
   const [item, setItem] = useState<ItemGet>({
@@ -40,7 +40,7 @@ const CompleteHistory = () => {
 
   return (
     <Fragment>
-      <HeaderLoged />
+      <Header />
       <Grid
         container
         direction="row"

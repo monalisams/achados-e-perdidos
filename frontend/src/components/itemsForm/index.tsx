@@ -5,9 +5,9 @@ import Button from "@mui/material/Button";
 import { ItemsService } from "../../services/items";
 import { Navigate, useParams } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
-import { HeaderLoged } from "../headerLoged";
 import MapPage from "../mapPageForm/MapPageForm";
 import Grid from "@mui/material/Grid";
+import { Header } from "../header";
 
 interface State {
   nameItem: string;
@@ -95,7 +95,7 @@ const ItemsForm = () => {
 
   return (
     <Fragment>
-      <HeaderLoged />
+      <Header />
       <Grid
         container
         direction="row"
@@ -103,7 +103,7 @@ const ItemsForm = () => {
         alignItems="stretch"
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       >
-        <Grid item xs={2} sm={4} md={6}>
+        <Grid item xs={12} sm={8} md={6}>
           <MapPage
             latitude={values.latitude}
             longitude={values.longitude}

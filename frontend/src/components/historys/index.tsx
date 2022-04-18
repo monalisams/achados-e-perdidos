@@ -1,20 +1,10 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Fragment, useState } from "react";
-import { HeaderLoged } from "../headerLoged";
 import { HistoricalService } from "../../services/historical";
 import { Navigate, useParams } from "react-router-dom";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableCell from "@mui/material/TableCell";
-import Table from "@mui/material/Table";
-import TableRow from "@mui/material/TableRow";
-import TableBody from "@mui/material/TableBody";
-import { Owner } from "../../services/models/item";
 import Grid from "@mui/material/Grid";
+import { Header } from "../header";
 
 interface State {
   descricaoStatus: string;
@@ -43,10 +33,6 @@ const Historys = () => {
       setValues({ ...values, [prop]: event.target.value });
     };
 
-  const handleChangeDate = (newValue: Date | null) => {
-    setValues({ ...values, birthDate: newValue || new Date() });
-  };
-
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const body = {
@@ -68,7 +54,7 @@ const Historys = () => {
 
   return (
     <Fragment>
-      <HeaderLoged />
+      <Header />
       <Grid
         container
         direction="row"
@@ -76,7 +62,7 @@ const Historys = () => {
         alignItems="stretch"
         rowSpacing={2}
       >
-        <Grid item xs={2} sm={4} md={6}>
+        <Grid item xs={12} sm={8} md={6}>
           <h2>Dados Proprietário</h2>
           <form onSubmit={handleSubmit}>
             <Grid

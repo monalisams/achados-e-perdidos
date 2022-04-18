@@ -2,7 +2,6 @@ import React from "react";
 import { Fragment, useEffect, useState } from "react";
 import { ItemsService } from "../../services/items";
 import { ItemList } from "../../services/models/item";
-import { HeaderLoged } from "../headerLoged";
 import {
   FormControl,
   Grid,
@@ -30,6 +29,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
 import MapPageItems from "../mapPageItems/MapPageItems";
 import "./index";
+import { Header } from "../header";
 
 const Items = () => {
   const [items, setItems] = useState<ItemList[]>([]);
@@ -72,7 +72,7 @@ const Items = () => {
 
   return (
     <Fragment>
-      <HeaderLoged />
+      <Header />
 
       <Grid
         className="content-size"
@@ -146,7 +146,7 @@ const Items = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        <Grid item xs={2} md={4}>
+        <Grid item xs={4} md={2}>
           <MapPageItems locations={items} />
         </Grid>
 

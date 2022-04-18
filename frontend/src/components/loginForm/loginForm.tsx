@@ -57,7 +57,7 @@ const LoginForm = () => {
 
   return (
     <Fragment>
-      <Header />
+      <Header hideLoginButton={true}/>
       <form onSubmit={handleSubmit}>
         <Grid
           container
