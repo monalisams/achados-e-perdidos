@@ -19,10 +19,10 @@ O objetivo da aplicação é controlar os itens achados e perdidos da região de
 
 
 # Roadmap
--[] Exebição da mensagem de erro no front-end
--[] Filtro dos itens diretamente na tabela e a cor de fundo da tabela 
--[] Header dinâmico
--[] Coluna de opções acrescentar um menu
+- [] Exebição da mensagem de erro no front-end
+- [] Filtro dos itens diretamente na tabela e a cor de fundo da tabela 
+- [] Header dinâmico
+- [] Coluna de opções acrescentar um menu
 
 ### Autor
 ---
@@ -113,4 +113,4 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [SpringBoot](https://spring.io/)
 - [React](https://pt-br.reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [MuiMaterial] (https://mui.com/)
+- [MuiMaterial](https://mui.com/)
