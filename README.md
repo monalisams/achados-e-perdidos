@@ -23,6 +23,8 @@ O objetivo da aplicação é controlar os itens achados e perdidos da região de
 - [] Filtro dos itens diretamente na tabela e a cor de fundo da tabela 
 - [] Header dinâmico
 - [] Coluna de opções acrescentar um menu
+- [] Responsividade
+- [] Botão menu - Header
 
 ### Autor
 ---
