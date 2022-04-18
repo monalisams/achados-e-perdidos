@@ -13,7 +13,7 @@ CREATE TABLE `item` (
     `name` varchar(255) NOT NULL,
     `description` varchar(150) NOT NULL,
     `status` VARCHAR(255) NOT NULL,
-    `date_item` TIMESTAMP NOT NULL DEFAULT `CURRENT_TIMESTAMP`,
+    `date_item` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `latitude` varchar(25),
     `longitude` varchar(25),
     `name_found` varchar(100),
