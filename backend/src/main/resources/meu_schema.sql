@@ -17,7 +17,7 @@ CREATE TABLE `item` (
     `latitude` varchar(25),
     `longitude` varchar(25),
     `name_found` varchar(100),
-    `phone` varchar(11),
+    `phone` varchar(20),
     `email` varchar(255),
     `owner_id` int
 );
@@ -27,7 +27,7 @@ CREATE TABLE `owner` (
     `name` varchar(255) NOT NULL,
     `cpf` varchar(11) NOT NULL,
     `birth_date` date NOT NULL,
-    `phone` varchar(11) NOT NULL,
+    `phone` varchar(20) NOT NULL,
     `email` varchar(255) NOT NULL,
     `identification_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
