@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import HistoryIcon from "@mui/icons-material/History";
@@ -30,23 +31,22 @@ import Button from "@mui/material/Button";
 import MapPageItems from "../mapPageItems/MapPageItems";
 import "./index";
 import { Header } from "../header";
+import { format } from 'date-fns'
 
 const Items = () => {
   const [items, setItems] = useState<ItemList[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [totalItems, setTotalItems] = React.useState(0);
-  const [filterName, setFilterName] = React.useState("");
+  const [filterSearch, setFilterSearch] = React.useState("");
   const [filterStatus, setFilterStatus] = React.useState("");
-  const [filterDescription, setFilterDescription] = React.useState("");
 
   const listItems = () => {
     ItemsService.list({
       size: rowsPerPage,
       page: page,
-      name: filterName,
+      search: filterSearch,
       status: filterStatus,
-      description: filterDescription,
     }).then((response) => {
       setItems(response.content);
       setTotalItems(response.totalElements);
@@ -73,72 +73,24 @@ const Items = () => {
   return (
     <Fragment>
       <Header />
-
       <Grid
         className="content-size"
         container
         direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
+        justifyContent="end"
+        alignItems="flex-end"
       >
-        <Grid item xs={4} sm={4} md={4}>
-          <Button
-            href="/items/cadastro"
-            variant="outlined"
-            startIcon={<AddCircleIcon />}
-          >
-            Novo Cadastro
-          </Button>
-        </Grid>
-        <Grid item xs={2} sm={2} md={2}>
-          <TextField
-            fullWidth 
-            size="small"
-            label="Filtrar Nome Item"
-            value={filterName}
-            variant="outlined"
-            onChange={(e) => setFilterName(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={3} sm={3} md={3}>
-          <TextField
-            size="small"
-            variant="outlined"
-            fullWidth 
-            label="Filtrar Descrição Item"
-            value={filterDescription}
-            onChange={(e) => setFilterDescription(e.target.value)}
-          />
-        </Grid>
-
-        <Grid item xs={2} sm={2} md={2}>
-          <FormControl variant="outlined" sx={{ minWidth: "100%" }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Filtrar Status
-            </InputLabel>
-            <Select
-              size="small"
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select"
-              value={filterStatus}
-              label="Filtrar Status"
-              onChange={(e) => setFilterStatus(e.target.value)}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="FOUND">Devolvido</MenuItem>
-              <MenuItem value="LOST">Perdido</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={1} sm={1} md={1}>
-          <Button size="large" variant="outlined" onClick={(e) => listItems()}>
-            Filtrar
-          </Button>
-        </Grid>
+        
+        <Button
+          href="/items/cadastro"
+          variant="contained"
+          startIcon={<AddCircleIcon />}
+        >
+          Novo Cadastro
+        </Button>
+        
       </Grid>
+
       <Grid
         className="content-size"
         container
@@ -146,14 +98,66 @@ const Items = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        <Grid item xs={4} md={2}>
+        <Grid item xs={4} sm={4} md={4}>
           <MapPageItems locations={items} />
         </Grid>
 
-        <Grid item xs={4} sm={6} md={8}>
+        <Grid item xs={8} sm={8} md={8}>
           <TableContainer component={Paper}>
             <Table size="small" aria-label="a dense table">
               <TableHead>
+                <TableRow>
+                  <TableCell align="center" colSpan={6}>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="flex-start"
+                      alignItems="center"
+                      spacing={1}
+                    >
+                      <Grid item xs={6} sm={6} md={6}>
+                        <TextField
+                          fullWidth
+                          size="small"
+                          label="Pesquisar"
+                          value={filterSearch}
+                          variant="outlined"
+                          onChange={(e) => setFilterSearch(e.target.value)}
+                        />
+                      </Grid>
+                      <Grid item xs={5} sm={5} md={5}>
+                        <FormControl
+                          size="small"
+                          variant="outlined"
+                          sx={{ minWidth: "100%" }}
+                        >
+                          <InputLabel id="demo-simple-select-standard-label">
+                            Filtrar Status
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select"
+                            value={filterStatus}
+                            label="Filtrar Status"
+                            onChange={(e) => setFilterStatus(e.target.value)}
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="FOUND">Devolvido</MenuItem>
+                            <MenuItem value="LOST">Perdido</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+
+                      <Grid item xs={1} sm={1} md={1}>
+                        <IconButton size="small" onClick={(e) => listItems()}>
+                          <SearchIcon></SearchIcon>
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
                 <TableRow>
                   <TableCell>Id Item</TableCell>
                   <TableCell align="right">Nome Item</TableCell>
@@ -172,12 +176,11 @@ const Items = () => {
                     <TableCell> {row.id}</TableCell>
                     <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.description}</TableCell>
-                    <TableCell align="right">{row.dateItem}</TableCell>
+                    <TableCell align="right">{format(new Date(row.dateItem), 'dd/MM/yyyy')}</TableCell>
                     <TableCell align="right">
                       {row.status === "FOUND" ? "Devolvido" : "Perdido"}
                     </TableCell>
                     <TableCell align="center">
-                      
                       {row.status === "LOST" && (
                         <>
                           <Tooltip title="Deletar">
