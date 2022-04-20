@@ -1,9 +1,10 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import InputMask from "react-input-mask";
+import Grid from "@mui/material/Grid";
 import { Fragment, useState } from "react";
 import { HistoricalService } from "../../services/historical";
 import { Navigate, useParams } from "react-router-dom";
-import Grid from "@mui/material/Grid";
 import { Header } from "../header";
 
 interface State {
@@ -19,6 +20,7 @@ const Historys = () => {
   let { id } = useParams();
 
   const [redirect, setRedirect] = useState(false);
+  const [errors, setErrors] = useState([]);
   const [values, setValues] = useState<State>({
     descricaoStatus: "",
     name: "",
@@ -45,7 +47,9 @@ const Historys = () => {
     };
     HistoricalService.create(body)
       .then(() => setRedirect(true))
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setErrors(e.response.data.errors);
+      });
   };
 
   if (redirect) {
@@ -81,27 +85,43 @@ const Historys = () => {
                 type="text"
                 onChange={handleChange("name")}
               />
-              <TextField
-                margin="normal"
-                required
-                id="cpf"
-                label="Cpf proprietário"
+              <InputMask
+                mask="999.999.999-99"
                 value={values.cpf}
-                variant="outlined"
-                type="text"
                 onChange={handleChange("cpf")}
-              />
+              >
+                {(inputProps: any) => (
+                  <TextField
+                    {...inputProps}
+                    onChange={inputProps.onChange}
+                    margin="normal"
+                    required
+                    id="cpf"
+                    label="Cpf proprietário"
+                    variant="outlined"
+                    type="text"
+                  />
+                )}
+              </InputMask>
 
-              <TextField
-                margin="normal"
-                required
-                id="phone"
-                label="Celular proprietário"
+              <InputMask
+                mask="(99)99999-9999"
                 value={values.phone}
-                variant="outlined"
-                type="text"
                 onChange={handleChange("phone")}
-              />
+              >
+                {(inputProps: any) => (
+                  <TextField
+                    {...inputProps}
+                    onChange={inputProps.onChange}
+                    margin="normal"
+                    required
+                    id="phone"
+                    label="Celular proprietário"
+                    variant="outlined"
+                    type="text"
+                  />
+                )}
+              </InputMask>
               <TextField
                 margin="normal"
                 required
@@ -112,6 +132,14 @@ const Historys = () => {
                 type="email"
                 onChange={handleChange("email")}
               />
+
+              {
+                !errors.map((e) => (
+                  <small key={e} className="error">
+                    {e}
+                  </small>
+                ))
+              }
               <Grid
                 container
                 direction="row"

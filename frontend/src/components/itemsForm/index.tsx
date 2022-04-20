@@ -2,6 +2,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Button from "@mui/material/Button";
+import InputMask from "react-input-mask";
 import { ItemsService } from "../../services/items";
 import { Navigate, useParams } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
@@ -45,7 +46,7 @@ const ItemsForm = () => {
   }, []);
 
   const [redirect, setRedirect] = useState(false);
-
+  const [errors, setErrors] = useState([]);
   const [values, setValues] = useState<State>({
     nameItem: "",
     descriptionItem: "",
@@ -79,9 +80,17 @@ const ItemsForm = () => {
       email: values.emailFound,
     };
     if (!id) {
-      ItemsService.create(body).then(() => setRedirect(true));
+      ItemsService.create(body)
+        .then(() => setRedirect(true))
+        .catch((e) => {
+          setErrors(e.response.data.errors);
+        });
     } else {
-      ItemsService.update(parseInt(id), body).then(() => setRedirect(true));
+      ItemsService.update(parseInt(id), body)
+        .then(() => setRedirect(true))
+        .catch((e) => {
+          setErrors(e.response.data.errors);
+        });
     }
   };
 
@@ -187,17 +196,25 @@ const ItemsForm = () => {
                     type="text"
                     onChange={handleChange("nameFound")}
                   />
-                  <TextField
-                    size="small"
-                    margin="normal"
-                    required
-                    id="phoneFound"
-                    label="Celular"
+                  <InputMask
+                    mask="(99)99999-9999"
                     value={values.phoneFound}
-                    variant="outlined"
-                    type="text"
                     onChange={handleChange("phoneFound")}
-                  />
+                  >
+                    {(inputProps: any) => (
+                      <TextField
+                        {...inputProps}
+                        onChange={inputProps.onChange}
+                        size="small"
+                        margin="normal"
+                        required
+                        id="phoneFound"
+                        label="Celular"
+                        variant="outlined"
+                        type="text"
+                      />
+                    )}
+                  </InputMask>
                   <TextField
                     size="small"
                     margin="normal"
@@ -212,7 +229,13 @@ const ItemsForm = () => {
                 </>
               )}
             </Grid>
-            <Grid></Grid>
+            {
+              !errors.map((e) => (
+                <small key={e} className="error">
+                  {e}
+                </small>
+              ))
+            }
             <Grid
               container
               direction="row"

@@ -5,6 +5,7 @@ import { Home } from './components/home';
 import { Items } from './components/items';
 import { ItemsForm } from './components/itemsForm';
 import { LoginForm } from './components/loginForm/loginForm';
+import { NotFound } from './components/notFound/NotFound';
 import PrivateRoute from './components/private/privateRoute';
 
 const AppRoutes = () => (
@@ -17,6 +18,7 @@ const AppRoutes = () => (
             <Route path='/items/edit/:id' element={<PrivateRoute><ItemsForm/></PrivateRoute>} />
             <Route path='/items/historico/:id' element={<PrivateRoute><Historys/></PrivateRoute>} />
             <Route path='/items/historico-completo/:id' element={<PrivateRoute><CompleteHistory/></PrivateRoute>} />
+            <Route path="*" element={<NotFound/>}>  </Route>
         </Routes>
     </BrowserRouter>
 )

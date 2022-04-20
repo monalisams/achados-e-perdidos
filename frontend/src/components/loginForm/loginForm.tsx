@@ -19,7 +19,7 @@ interface State {
 
 const LoginForm = () => {
   const [redirect, setRedirect] = useState(false);
-
+  const [errors, setErrors] = useState([]);
   const [values, setValues] = useState<State>({
     login: "",
     password: "",
@@ -46,9 +46,14 @@ const LoginForm = () => {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    UsersService.login({ login: values.login, password: values.password }).then(
+    UsersService.login({ login: values.login, password: values.password })
+    .then(
       () => setRedirect(true)
-    );
+    )
+    .catch((e) => {
+      console.log(e)
+      setErrors(e.response.data.errors);
+    });
   };
 
   if (redirect) {
@@ -62,9 +67,7 @@ const LoginForm = () => {
         <Grid
           container
           alignItems="center"
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           spacing={2}
-          rowSpacing={2}
           direction="column"
           justifyContent="center"
         >
@@ -91,7 +94,7 @@ const LoginForm = () => {
             <TextField
               margin="none"
               id="password"
-              label="Password"
+              label="Senha"
               variant="outlined"
               type={values.showPassword ? "text" : "password"}
               value={values.password}
@@ -112,6 +115,7 @@ const LoginForm = () => {
               }}
             />
           </Grid>
+          {errors.map(e => <small key={e} className="error">{e}</small>)}
           <Grid item xs={4} sm={6} md={8}>
             <Button size="large" variant="contained" type="submit">
               Login
