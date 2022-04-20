@@ -60,6 +60,9 @@ button{
     margin-left: auto ;
     margin-right: auto ;
 }
+.error{
+    color: red ;
+}
 
     
 `;
