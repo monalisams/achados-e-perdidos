@@ -230,7 +230,7 @@ const ItemsForm = () => {
               )}
             </Grid>
             {
-              !errors.map((e) => (
+              errors?.map((e) => (
                 <small key={e} className="error">
                   {e}
                 </small>

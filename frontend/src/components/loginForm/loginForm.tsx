@@ -71,7 +71,7 @@ const LoginForm = () => {
           direction="column"
           justifyContent="center"
         >
-          <Grid item xs={4} sm={6} md={8}>
+          <Grid item xs={12} sm={8} md={8}>
             <TextField
               margin="normal"
               id="login"
@@ -90,7 +90,7 @@ const LoginForm = () => {
             />
             <span></span>
           </Grid>
-          <Grid item xs={4} sm={6} md={8}>
+          <Grid item xs={12} sm={8} md={8}>
             <TextField
               margin="none"
               id="password"
@@ -115,8 +115,8 @@ const LoginForm = () => {
               }}
             />
           </Grid>
-          {errors.map(e => <small key={e} className="error">{e}</small>)}
-          <Grid item xs={4} sm={6} md={8}>
+          {errors?.map(e => <small key={e} className="error">{e}</small>)}
+          <Grid item xs={6} sm={8} md={8}>
             <Button size="large" variant="contained" type="submit">
               Login
             </Button>

@@ -25,7 +25,7 @@ CREATE TABLE `item` (
 CREATE TABLE `owner` (
     `id` int PRIMARY KEY AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
-    `cpf` varchar(11) NOT NULL,
+    `cpf` varchar(20) NOT NULL,
     `birth_date` date NOT NULL,
     `phone` varchar(20) NOT NULL,
     `email` varchar(255) NOT NULL,
