@@ -36,19 +36,13 @@ public class UserController {
 
     @PostMapping("auth")
     public TokenDto authenticate(@RequestBody UserLoginDTO userLoginDTO) {
-        try{
-            User user = User.builder()
+        User user = User.builder()
                     .login(userLoginDTO.getLogin())
                     .password(userLoginDTO.getPassword())
                     .build();
-            userServiceImpl.authenticate(user);
-            String token = jwtService.generateToken(user);
-            return new TokenDto(user.getLogin(), token);
-
-        }catch (UsernameNotFoundException  | InvalidPassword e){
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-
-        }
+        userServiceImpl.authenticate(user);
+        String token = jwtService.generateToken(user);
+        return new TokenDto(user.getLogin(), token);
     }
 
 }

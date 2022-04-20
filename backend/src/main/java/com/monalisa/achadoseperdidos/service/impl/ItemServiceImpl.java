@@ -77,7 +77,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Page<Item> getItems(ItemFilterDTO filter) {
         Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize());
-        return itemRepository.findAllBy(filter.getName(), filter.getDescription(), filter.getStatus(), pageable);
+        return itemRepository.findAllBy(filter.getSearch(), filter.getStatus(), pageable);
     }
 
 

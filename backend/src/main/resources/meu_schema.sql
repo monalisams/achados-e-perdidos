@@ -26,10 +26,10 @@ CREATE TABLE `owner` (
     `id` int PRIMARY KEY AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `cpf` varchar(11) NOT NULL,
-    `birthDate` date NOT NULL,
+    `birth_date` date NOT NULL,
     `phone` varchar(11) NOT NULL,
     `email` varchar(255) NOT NULL,
-    `identificationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `identification_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 

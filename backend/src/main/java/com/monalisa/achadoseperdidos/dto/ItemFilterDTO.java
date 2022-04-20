@@ -11,8 +11,7 @@ import lombok.*;
 @Setter
 public class ItemFilterDTO {
 
-    private String name;
-    private String description;
+    private String search;
     private ItemStatus status;
     private int page;
     private int size;
