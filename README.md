@@ -48,7 +48,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone <https://git.acclabs.com.br/gitlab/monalisa.santos/desafio-individual-turma-2022.git>
+$ git clone https://git.acclabs.com.br/gitlab/monalisa.santos/desafio-individual-turma-2022.git
 
 #Com o usuário: root e senha: root
 
@@ -64,7 +64,7 @@ $ meu_schema.sql
 
 ```bash
 # Clone este repositório
-$ git clone <https://git.acclabs.com.br/gitlab/monalisa.santos/desafio-individual-turma-2022.git>
+$ git clone https://git.acclabs.com.br/gitlab/monalisa.santos/desafio-individual-turma-2022.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd desafio-individual-turma-2022
@@ -78,7 +78,7 @@ $ mvnw clean install
 # Execute a aplicação em modo de desenvolvimento
 $ mvnw spring-boot:run
 
-# O servidor inciará na porta:8080 - acesse <http://localhost:8080>
+# O servidor inciará na porta:8080 - acesse http://localhost:8080
 ```
 ### 🎲 Rodando o Front End 
 
@@ -97,7 +97,7 @@ $ yarn install
 # Execute a aplicação em modo de desenvolvimento
 $ yarn start 
 
-# O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+# O servidor inciará na porta:3000 - acesse http://localhost:3000
 ```
 
 ### 🎲 Acessando Aplicação
