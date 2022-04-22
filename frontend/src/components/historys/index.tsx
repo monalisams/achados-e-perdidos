@@ -44,6 +44,7 @@ const Historys = () => {
       phone: values.phone,
       email: values.email,
       itemId: Number(id),
+      identificationDate: new Date()
     };
     HistoricalService.create(body)
       .then(() => setRedirect(true))

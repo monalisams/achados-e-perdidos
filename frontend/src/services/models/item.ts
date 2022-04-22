@@ -33,6 +33,7 @@ interface Owner {
   phone: string;
   email: string;
   itemId: number;
+  identificationDate: Date;
 }
 
 interface ItemGet {

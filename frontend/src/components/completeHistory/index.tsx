@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { ItemsService } from "../../services/items";
 import { ItemGet } from "../../services/models/item";
 import { Header } from "../header";
-
+import { format } from 'date-fns'
 const CompleteHistory = () => {
   const [item, setItem] = useState<ItemGet>({
     id: 0,
@@ -26,6 +26,7 @@ const CompleteHistory = () => {
       phone: "",
       email: "",
       itemId: 0,
+      identificationDate: new Date(),
     },
   });
 
@@ -88,7 +89,7 @@ const CompleteHistory = () => {
               margin="normal"
               id="outlined-read-only-input"
               label="Data Cadastro Item"
-              value={item?.dateItem}
+              value={format(new Date(item?.dateItem), 'dd/MM/yyyy')}
               InputProps={{
                 readOnly: true,
               }}
@@ -97,7 +98,7 @@ const CompleteHistory = () => {
               margin="normal"
               id="outlined-read-only-input"
               label="Status Item"
-              value={item?.status}
+              value={item?.status === "FOUND" ? "Devolvido" : "Perdido"}
               InputProps={{
                 readOnly: true,
               }}
@@ -129,8 +130,8 @@ const CompleteHistory = () => {
             <TextField
               margin="normal"
               id="outlined-read-only-input"
-              label="Data Nasc. Proprietário"
-              value={item?.owner.birthDate}
+              label="Item devolvido"
+              value={format(new Date(item?.owner.identificationDate), 'dd/MM/yyyy')}
               InputProps={{
                 readOnly: true,
               }}
