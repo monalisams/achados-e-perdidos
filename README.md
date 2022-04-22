@@ -19,9 +19,9 @@ O objetivo da aplicação é controlar os itens achados e perdidos da região de
 
 
 # Roadmap
-- [] Exebição da mensagem de erro no front-end
-- [] Filtro dos itens diretamente na tabela e a cor de fundo da tabela 
-- [] Coluna de opções acrescentar um menu
+- [ ] Tabela com filtros do Mui 
+- [ ] Header dinâmico
+
 
 
 ### Autor
