@@ -53,7 +53,7 @@ const Items = () => {
     });
   };
 
-  useEffect(() => listItems(), [page]);
+  useEffect(() => listItems(), [page,rowsPerPage]);
 
   const deleteItem = (id: number) => {
     ItemsService.delete(id).then(() => listItems());
