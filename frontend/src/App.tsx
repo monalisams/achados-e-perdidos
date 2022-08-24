@@ -5,7 +5,7 @@ import AppRoutes from "./routes";
 import { GlobalStyle } from "./styles/global";
 
 export const REACT_APP_GOOGLE_API_KEY =
-  "AIzaSyBnVcreTaPs_7GbY9wdH8Wco3Z1uazzxwA";
+  "";
 
 function App() {
   return (
