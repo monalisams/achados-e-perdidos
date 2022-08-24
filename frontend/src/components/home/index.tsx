@@ -8,7 +8,7 @@ const Home = () => {
     <Fragment>
       <Header />
       <Content>
-        <Grid item xs={6} sm={8} md={8}></Grid>
+        <Grid item xs={6} sm={8} md={8}>
         <h1>
           Site interno para o controle de achados e perdidos do Estado de São
           Paulo.
@@ -17,6 +17,7 @@ const Home = () => {
           Todos os iténs foram registrados no ganha tempo, terminal  de ônibus/rodoviário da cidade que foi
           encontrado.
         </h2>
+        </Grid>
       </Content>
     </Fragment>
   );
